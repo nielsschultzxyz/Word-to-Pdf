@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="WordToPdf_Test.MVVM.View.ConvertView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WordToPdf_Test.MVVM.View" 
+             xmlns:convertViewModel="clr-namespace:WordToPdf_Test.MVVM.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <convertViewModel:ConvertViewModel/>
+    </UserControl.DataContext>
+    
+    <ScrollViewer>
+        <StackPanel Width="270">
+
+            <TextBox AllowDrop="True"
+                     PreviewDragOver="TextBox_PreviewDragOver"
+                     Drop="TextBox_Drop"
+                     Margin="0,20,0,0"
+                     Text="{Binding ModelConvertToPdf.FileName,
+                     UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource DragAndDropTextBoxTheme}"/>
+
+            <Label Content="*Upload a file, before starting the convert!"
+                   Foreground="White"
+                   Margin="0,10,0,0"/>
+            
+            <Button x:Name="btn_LoadFileForConvert"
+                    Margin="0,0,0,0"
+                    Content="Load"
+                    Command="{Binding ModelConvertToPdf.LoadFileCommand}"/>
+            
+            <Button x:Name="btn_ConvertFileToPdf"
+                    Margin="0,10,0,0"
+                    Content="Convert"
+                    Command="{Binding ModelConvertToPdf.ConvertToPdfCommand}"/>
+            
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
